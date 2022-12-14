@@ -67,8 +67,35 @@ const vDOM3 = (
   </p>
 );
 
+/**
+ * @function Title React 함수형 컴포넌트 예제
+ * @returns
+ */
+function Title(props) {
+  return <h1>{props.children}</h1>;
+}
+
+function Item(props) {
+  return <li style={`color:${props.color}`}>{props.children}</li>;
+}
+
+/**
+ * @jsx React.createElement()의 syntatic sugar로 HTML 형식으로 작성 시, 내부적으로 createElement로 동작
+ */
+const vDOM4 = (
+  <p>
+    <Title>텍스트</Title>
+    <ul>
+      <Item color='red'>첫번째 아이템</Item>
+      <Item color='blue'>두번째 아이템</Item>
+      <Item color='green'>세번째 아이템</Item>
+    </ul>
+  </p>
+);
+
 // DOM root node에 생성한 DOM node를 붙여줌
 // document.querySelector("#root").appendChild(createDOM(vDOM));
 render(document.querySelector("#root"), vDOM);
 render(document.querySelector("#root"), vDOM2);
 render(document.querySelector("#root"), vDOM3);
+render(document.querySelector("#root"), vDOM4);

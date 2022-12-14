@@ -39,6 +39,16 @@ export function render(container, vDOM) {
  * @returns {object} 간단한 객체를 생성해 반환
  */
 export function createElement(tag, props, ...children) {
+  if (typeof tag === "function") {
+    if (children.length > 0) {
+      return tag({
+        ...props,
+        children: children.length === 1 ? children[0] : children,
+      });
+    }
+    return tag();
+  }
+
   // props === null 인 경우 방어코드
   props = props || {};
 
