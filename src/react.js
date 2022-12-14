@@ -1,5 +1,5 @@
 /**
- * createDOM :: 태그 혹은 텍스트를 받아서 DOM node를 생성해 반환하는 함수
+ * @function createDOM 태그 혹은 텍스트를 받아서 DOM node를 생성해 반환하는 함수
  * @param {object} node text니 node 형식의 객체
  */
 export function createDOM(node) {
@@ -23,10 +23,25 @@ export function createDOM(node) {
 }
 
 /**
- *
+ * @function render 내부 appendChild 동작 캡슐화
  * @param {object} container 변환한 요소들을 붙일 실제 DOM
  * @param {object} vDOM 변환할 가상 DOM
  */
 export function render(container, vDOM) {
   container.appendChild(createDOM(vDOM));
+}
+
+/**
+ * @function createElement 간단한 객체를 생성해 반환하는 함수
+ * @param {string} tag 태그명
+ * @param {object} props 태그 속성들을 key: value 형태로 저장한 객체
+ * @param {array} children 태그의 자식 요소들(다른 태그이거나 텍스트)
+ * @returns {object} 간단한 객체를 생성해 반환
+ */
+export function createElement(tag, props, ...children) {
+  return {
+    tag,
+    props,
+    children,
+  };
 }
