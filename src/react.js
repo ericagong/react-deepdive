@@ -32,13 +32,16 @@ export function render(container, vDOM) {
 }
 
 /**
- * @function createElement 간단한 객체를 생성해 반환하는 함수
+ * @function createElement React.createElement(component, props, ...children) 유사 함수 (https://ko.reactjs.org/docs/react-without-jsx.html)
  * @param {string} tag 태그명
  * @param {object} props 태그 속성들을 key: value 형태로 저장한 객체
  * @param {array} children 태그의 자식 요소들(다른 태그이거나 텍스트)
  * @returns {object} 간단한 객체를 생성해 반환
  */
 export function createElement(tag, props, ...children) {
+  // props === null 인 경우 방어코드
+  props = props || {};
+
   return {
     tag,
     props,

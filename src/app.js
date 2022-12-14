@@ -1,3 +1,8 @@
+/**
+ * 소스 코드 내 주석에 @jsx 구문 포함시, babel은 build 결과를 주석에 매칭시킴
+ * 따라서 빌드 파일에서 사용하기 위해 createElement import 필요
+ */
+/* @jsx createElement */
 import { createDOM, render, createElement } from "./react";
 
 const vDOM = {
@@ -46,7 +51,24 @@ const vDOM2 = createElement(
   )
 );
 
+/**
+ * @jsx React.createElement()의 syntatic sugar로 HTML 형식으로 작성 시, 내부적으로 createElement로 동작
+ */
+const vDOM3 = (
+  <p>
+    <h1>텍스트</h1>
+    <ul>
+      <li style='color: red'>첫번째 아이템</li>
+      <li id='item2' style='color: blue'>
+        두번째 아이템
+      </li>
+      <li style='color: green'>세번째 아이템</li>
+    </ul>
+  </p>
+);
+
 // DOM root node에 생성한 DOM node를 붙여줌
 // document.querySelector("#root").appendChild(createDOM(vDOM));
-// render(document.querySelector("#root"), vDOM);
+render(document.querySelector("#root"), vDOM);
 render(document.querySelector("#root"), vDOM2);
+render(document.querySelector("#root"), vDOM3);
